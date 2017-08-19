@@ -10,15 +10,29 @@
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                        <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
+                            <label for="first_name" class="col-md-4 control-label">First Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('first_name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('first_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+                            <label for="last_name" class="col-md-4 control-label">Last Name</label>
+
+                            <div class="col-md-6">
+                                <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
+
+                                @if ($errors->has('last_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('last_name') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -33,6 +47,25 @@
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('timezone') ? ' has-error' : '' }}">
+                            <label for="timezone" class="col-md-4 control-label">Timezone</label>
+
+                            <div class="col-md-6">
+                                <select id="timezone" name="timezone" data-placeholder="Please select timezone" class="form-control chosen" style="width: 100%;" value="{{ old('timezone') }}" required>
+                                    <option value=""></option>
+                                    @foreach ($timezones as $timezone)
+                                        <option value="{{ $timezone }}" {{ $timezone === old('timezone') ? 'selected="selected"' : '' }}>{{ $timezone }}</option>
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('timezone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('timezone') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -73,4 +106,19 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('css')
+    <link rel="stylesheet" href="vendor/chosen_v1.4.0/chosen.min.css">
+@endsection
+
+@section('js')
+    <script src="vendor/chosen_v1.4.0/chosen.jquery.min.js"></script>
+    <script>
+        // Chosen plugin
+        $('.chosen').chosen();
+        $('.chosen-select').chosen({
+            disable_search_threshold: 10
+        });
+    </script>
 @endsection

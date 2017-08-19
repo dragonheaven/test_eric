@@ -8,10 +8,19 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Test by Eric') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="vendor/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="styles/roboto.css">
+    <link rel="stylesheet" href="styles/font-awesome.css">
+    <link rel="stylesheet" href="styles/panel.css">
+    <link rel="stylesheet" href="styles/feather.css">
+    <link rel="stylesheet" href="styles/animate.css">
+    <link rel="stylesheet" href="styles/urban.css">
+    <link rel="stylesheet" href="styles/urban.skins.css">
 </head>
 <body>
     <div id="app">
@@ -26,17 +35,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <a class="navbar-brand" href="{{ url('/blogs') }}">
+                            Blogs
+                        </a>
+                        <a class="navbar-brand" href="{{ url('/users') }}">
+                            Users
+                        </a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -48,7 +57,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -75,6 +84,22 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="scripts/extentions/modernizr.js"></script>
+    <script src="vendor/jquery/dist/jquery.js"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="vendor/jquery.easing/jquery.easing.js"></script>
+    <script src="vendor/fastclick/lib/fastclick.js"></script>
+    <script src="vendor/onScreen/jquery.onscreen.js"></script>
+    <script src="vendor/jquery-countTo/jquery.countTo.js"></script>
+    <script src="vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="scripts/ui/accordion.js"></script>
+    <script src="scripts/ui/animate.js"></script>
+    <script src="scripts/ui/link-transition.js"></script>
+    <script src="scripts/ui/panel-controls.js"></script>
+    <script src="scripts/ui/preloader.js"></script>
+    <script src="scripts/ui/toggle.js"></script>
+    <script src="scripts/urban-constants.js"></script>
+    <script src="scripts/extentions/lib.js"></script>
+    @yield('js')
 </body>
 </html>
