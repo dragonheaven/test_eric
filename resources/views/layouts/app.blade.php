@@ -12,15 +12,15 @@
 
     <!-- Styles -->
     @yield('css')
-    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="vendor/perfect-scrollbar/css/perfect-scrollbar.css">
-    <link rel="stylesheet" href="styles/roboto.css">
-    <link rel="stylesheet" href="styles/font-awesome.css">
-    <link rel="stylesheet" href="styles/panel.css">
-    <link rel="stylesheet" href="styles/feather.css">
-    <link rel="stylesheet" href="styles/animate.css">
-    <link rel="stylesheet" href="styles/urban.css">
-    <link rel="stylesheet" href="styles/urban.skins.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/styles/roboto.css">
+    <link rel="stylesheet" href="/styles/font-awesome.css">
+    <link rel="stylesheet" href="/styles/panel.css">
+    <link rel="stylesheet" href="/styles/feather.css">
+    <link rel="stylesheet" href="/styles/animate.css">
+    <link rel="stylesheet" href="/styles/urban.css">
+    <link rel="stylesheet" href="/styles/urban.skins.css">
 </head>
 <body>
     <div id="app">
@@ -39,6 +39,7 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    @if (Auth::check())
                     <ul class="nav navbar-nav">
                         <a class="navbar-brand" href="{{ url('/blogs') }}">
                             Blogs
@@ -47,6 +48,7 @@
                             Users
                         </a>
                     </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -84,22 +86,22 @@
     </div>
 
     <!-- Scripts -->
-    <script src="scripts/extentions/modernizr.js"></script>
-    <script src="vendor/jquery/dist/jquery.js"></script>
-    <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="vendor/jquery.easing/jquery.easing.js"></script>
-    <script src="vendor/fastclick/lib/fastclick.js"></script>
-    <script src="vendor/onScreen/jquery.onscreen.js"></script>
-    <script src="vendor/jquery-countTo/jquery.countTo.js"></script>
-    <script src="vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
-    <script src="scripts/ui/accordion.js"></script>
-    <script src="scripts/ui/animate.js"></script>
-    <script src="scripts/ui/link-transition.js"></script>
-    <script src="scripts/ui/panel-controls.js"></script>
-    <script src="scripts/ui/preloader.js"></script>
-    <script src="scripts/ui/toggle.js"></script>
-    <script src="scripts/urban-constants.js"></script>
-    <script src="scripts/extentions/lib.js"></script>
+    <script src="/scripts/extentions/modernizr.js"></script>
+    <script src="/vendor/jquery/dist/jquery.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/vendor/jquery.easing/jquery.easing.js"></script>
+    <script src="/vendor/fastclick/lib/fastclick.js"></script>
+    <script src="/vendor/onScreen/jquery.onscreen.js"></script>
+    <script src="/vendor/jquery-countTo/jquery.countTo.js"></script>
+    <script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="/scripts/ui/accordion.js"></script>
+    <script src="/scripts/ui/animate.js"></script>
+    <script src="/scripts/ui/link-transition.js"></script>
+    <script src="/scripts/ui/panel-controls.js"></script>
+    <script src="/scripts/ui/preloader.js"></script>
+    <script src="/scripts/ui/toggle.js"></script>
+    <script src="/scripts/urban-constants.js"></script>
+    <script src="/scripts/extentions/lib.js"></script>
     @yield('js')
 </body>
 </html>

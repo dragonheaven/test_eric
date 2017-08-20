@@ -11,7 +11,10 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('users');
+        $timezones = \DateTimeZone::listIdentifiers(\DateTimeZone::ALL);
+
+        return view('users')
+            ->with('timezones', $timezones);
     }
 
     public function list()
@@ -25,6 +28,27 @@ class UserController extends Controller
         }
 
         return response()->json($users);
+    }
+
+    public function create(Request $request)
+    {
+        $this->validate($request, [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'timezone' => 'required',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'timezone' => $request->timezone,
+            'password' => bcrypt($request->password),
+        ]);
+
+        return response()->json(['success' => true], 200);
     }
 
     public function get($id)
@@ -45,7 +69,7 @@ class UserController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'timezone' => 'required',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|email|max:255',
             'password' => 'string|min:6|confirmed',
         ]);
 
@@ -62,7 +86,7 @@ class UserController extends Controller
         return response()->json(['success' => true], 200);
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
         $user = User::findOrFail($id);
 
@@ -70,24 +94,4 @@ class UserController extends Controller
         return response()->json(['success' => true], 200);
     }
 
-    public function create(Request $request, $id)
-    {
-        $this->validate($request, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'timezone' => 'required',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
-        User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'timezone' => $request->timezone,
-            'password' => bcrypt($request->password),
-        ]);
-
-        return response()->json(['success' => true], 200);
-    }
 }
